@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useGameStore } from './store';
 import { TreeDeciduous, Zap, TrendingUp, BookOpen, ChevronRight, Wind, Sparkles, Brain } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
