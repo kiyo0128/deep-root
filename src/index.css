@@ -1,20 +1,137 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-fantasy-bg: #050505;
+  --color-fantasy-primary: #4ade80;
+  --color-fantasy-secondary: #60a5fa;
+  --color-fantasy-accent: #f472b6;
+  --color-fantasy-muted: #1e293b;
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(74, 222, 128, 0.2), 0 0 10px rgba(74, 222, 128, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.6), 0 0 30px rgba(74, 222, 128, 0.3); }
+}
+
+@keyframes glow-blue {
+  0%, 100% { box-shadow: 0 0 5px rgba(96, 165, 250, 0.2), 0 0 10px rgba(96, 165, 250, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(96, 165, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.3); }
+}
+
+@keyframes grow-available {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(16, 185, 129, 0); }
+  50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+}
+
+@keyframes focus-available {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(59, 130, 246, 0); }
+  50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+}
+
+.animate-glow-blue {
+  animation: glow-blue 2s ease-in-out infinite;
+}
+
+.animate-available-emerald {
+  animation: grow-available 2s ease-in-out infinite;
+}
+
+.animate-available-blue {
+  animation: focus-available 2s ease-in-out infinite;
+}
 
 body {
   margin: 0;
-  background-color: #0a0a0c;
-  color: #e5e7eb;
+  background-color: #030406;
+  color: #f1f5f9;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@layer components {
-  .fantasy-card {
-    @apply bg-fantasy-muted/50 border border-fantasy-muted rounded-xl p-4 backdrop-blur-sm;
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 3D Button Push Effect */
+.btn-tactile {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 0 0 rgba(0, 0, 0, 0.3),
+    0 8px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tactile:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 0 rgba(0, 0, 0, 0.3),
+    0 4px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tactile-emerald {
+  box-shadow: 
+    0 4px 0 0 rgba(5, 150, 105, 0.4),
+    0 8px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tactile-emerald:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 0 rgba(5, 150, 105, 0.4),
+    0 4px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tactile-blue {
+  box-shadow: 
+    0 4px 0 0 rgba(37, 99, 235, 0.4),
+    0 8px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-tactile-blue:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 0 rgba(37, 99, 235, 0.4),
+    0 4px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .mobile-touch-target {
+    min-height: 48px;
   }
-  .fantasy-button {
-    @apply px-4 py-2 bg-fantasy-primary text-black font-bold rounded-lg hover:bg-fantasy-primary/80 transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  
+  h1 {
+    font-size: 1.5rem !important;
   }
 }
