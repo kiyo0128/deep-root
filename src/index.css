@@ -1,137 +1,160 @@
 @import "tailwindcss";
 
 @theme {
-  --color-fantasy-bg: #050505;
-  --color-fantasy-primary: #4ade80;
-  --color-fantasy-secondary: #60a5fa;
-  --color-fantasy-accent: #f472b6;
-  --color-fantasy-muted: #1e293b;
-
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-float: float 3s ease-in-out infinite;
-  --animate-glow: glow 2s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(74, 222, 128, 0.2), 0 0 10px rgba(74, 222, 128, 0.1); }
-  50% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.6), 0 0 30px rgba(74, 222, 128, 0.3); }
-}
-
-@keyframes glow-blue {
-  0%, 100% { box-shadow: 0 0 5px rgba(96, 165, 250, 0.2), 0 0 10px rgba(96, 165, 250, 0.1); }
-  50% { box-shadow: 0 0 20px rgba(96, 165, 250, 0.6), 0 0 30px rgba(96, 165, 250, 0.3); }
-}
-
-@keyframes grow-available {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(16, 185, 129, 0); }
-  50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
-}
-
-@keyframes focus-available {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(59, 130, 246, 0); }
-  50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
-}
-
-.animate-glow-blue {
-  animation: glow-blue 2s ease-in-out infinite;
-}
-
-.animate-available-emerald {
-  animation: grow-available 2s ease-in-out infinite;
-}
-
-.animate-available-blue {
-  animation: focus-available 2s ease-in-out infinite;
-}
-
-body {
-  margin: 0;
-  background-color: #030406;
-  color: #f1f5f9;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* 3D Button Push Effect */
-.btn-tactile {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 4px 0 0 rgba(0, 0, 0, 0.3),
-    0 8px 15px -5px rgba(0, 0, 0, 0.5);
-}
-
-.btn-tactile:active:not(:disabled) {
-  transform: translateY(2px);
-  box-shadow: 
-    0 2px 0 0 rgba(0, 0, 0, 0.3),
-    0 4px 10px -5px rgba(0, 0, 0, 0.5);
-}
-
-.btn-tactile-emerald {
-  box-shadow: 
-    0 4px 0 0 rgba(5, 150, 105, 0.4),
-    0 8px 15px -5px rgba(0, 0, 0, 0.5);
-}
-
-.btn-tactile-emerald:active:not(:disabled) {
-  transform: translateY(2px);
-  box-shadow: 
-    0 2px 0 0 rgba(5, 150, 105, 0.4),
-    0 4px 10px -5px rgba(0, 0, 0, 0.5);
-}
-
-.btn-tactile-blue {
-  box-shadow: 
-    0 4px 0 0 rgba(37, 99, 235, 0.4),
-    0 8px 15px -5px rgba(0, 0, 0, 0.5);
-}
-
-.btn-tactile-blue:active:not(:disabled) {
-  transform: translateY(2px);
-  box-shadow: 
-    0 2px 0 0 rgba(37, 99, 235, 0.4),
-    0 4px 10px -5px rgba(0, 0, 0, 0.5);
-}
-
-/* Mobile optimizations */
-@media (max-width: 640px) {
-  .mobile-touch-target {
-    min-height: 48px;
-  }
+  --color-game-bg: #05070a;
+  --color-game-surface: #0f1419;
+  --color-game-border: #1e293b;
+  --color-game-text: #f8fafc;
+  --color-game-muted: #64748b;
   
-  h1 {
-    font-size: 1.5rem !important;
+  --color-emerald-glow: rgba(16, 185, 129, 0.2);
+  --color-blue-glow: rgba(59, 130, 246, 0.2);
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; filter: blur(8px); }
+    50% { opacity: 1; filter: blur(12px); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-[#05070a] text-slate-200 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 0% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+      url("https://www.transparenttextures.com/patterns/dark-matter.png");
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  body::after {
+    content: '';
+    @apply fixed inset-0 pointer-events-none;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 100;
+  }
+
+  h1, h2, h3 {
+    @apply tracking-widest uppercase;
+    font-family: 'Georgia', serif;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-slate-900/40 backdrop-blur-md border border-white/5 rounded-3xl;
+    box-shadow: 
+      0 20px 50px -10px rgba(0, 0, 0, 0.8),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .premium-card {
+    @apply relative overflow-hidden transition-all duration-700 rounded-3xl;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.2) 0%, rgba(15, 23, 42, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .premium-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-700;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+  }
+
+  .premium-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .resource-value {
+    @apply font-mono font-black tabular-nums tracking-tighter;
+    text-shadow: 0 0 30px currentColor;
+  }
+
+  .btn-rune {
+    @apply relative px-8 py-5 rounded-2xl font-black uppercase tracking-[0.25em] transition-all duration-500 overflow-hidden;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .btn-rune::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+  }
+
+  .btn-rune:hover:not(:disabled) {
+    @apply border-white/20 -translate-y-1;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  }
+
+  .btn-rune:hover:not(:disabled)::after {
+    @apply opacity-100;
+  }
+
+  .btn-rune:active:not(:disabled) {
+    @apply translate-y-0 scale-95;
+  }
+
+  .btn-rune-emerald {
+    @apply text-emerald-400 border-emerald-500/20;
+  }
+  .btn-rune-emerald:hover:not(:disabled) {
+    @apply bg-emerald-500/10 border-emerald-500/40;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+  }
+
+  .btn-rune-blue {
+    @apply text-blue-400 border-blue-500/20;
+  }
+  .btn-rune-blue:hover:not(:disabled) {
+    @apply bg-blue-500/10 border-blue-500/40;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+  }
+
+  .btn-rune:disabled {
+    @apply opacity-20 grayscale cursor-not-allowed;
+  }
+
+  .section-label {
+    @apply flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.4em] text-slate-600 mb-8;
+  }
+  .section-label::after {
+    content: '';
+    @apply h-[1px] flex-1 bg-gradient-to-r from-slate-800 to-transparent opacity-50;
+  }
+
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800/50 rounded-full hover:bg-slate-700 transition-colors;
+  }
+}
+
+.log-entry {
+  @apply relative pl-8 py-5 border-l border-slate-900 transition-all duration-700;
+}
+.log-entry-active {
+  @apply border-emerald-500/50 bg-emerald-500/5;
+}
+.log-entry-active::before {
+  content: '';
+  @apply absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_15px_#10b981];
 }
