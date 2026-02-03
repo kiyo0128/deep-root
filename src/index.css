@@ -79,6 +79,28 @@
     box-shadow: 0 0px 0 0 transparent;
   }
 
+  .btn-amber {
+    @apply border-amber-900 bg-amber-950/30 text-amber-400;
+    box-shadow: 0 4px 0 0 #78350f;
+  }
+  .btn-amber:not(:disabled):hover {
+    @apply bg-amber-900/50 border-amber-700;
+    box-shadow: 0 4px 0 0 #92400e;
+  }
+  .btn-amber:not(:disabled):active {
+    box-shadow: 0 0px 0 0 transparent;
+  }
+
+  .btn-amber-border {
+    @apply border-amber-900/50 hover:border-amber-700/50;
+  }
+
+  .btn-active-skill {
+    @apply border-amber-500 bg-amber-500 text-black shadow-[0_0_15px_rgba(245,158,11,0.8)] animate-pulse;
+    box-shadow: 0 0px 0 0 transparent;
+    transform: translateY(4px);
+  }
+
   /* Container Blocks */
   .info-box {
     @apply bg-surface border-2 border-border p-6 rounded-none;
